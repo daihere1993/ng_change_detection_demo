@@ -1,0 +1,21 @@
+<h2>OnPush Change Detection</h2>
+
+<div>
+  <button
+    nz-button
+    nzType="primary"
+    nzSize="large"
+    class="trigger"
+    (click)="pushToCmp17()"
+  >
+    Push to Cmp17
+  </button>
+</div>
+<div class="tree">
+  <ul>
+    <li>
+      <cmp-one [model]="model"></cmp-one>
+    </li>
+  </ul>
+</div>
+<div style="margin-bottom: 5em; clear: both;"></div>
