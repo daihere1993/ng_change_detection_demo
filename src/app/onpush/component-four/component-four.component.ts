@@ -1,16 +1,17 @@
 import {
   Component,
-  AfterViewChecked,
+  OnInit,
   NgZone,
   ElementRef,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
-import { ToggleService } from 'src/app/toggle.service';
+import { BaseComponent } from 'src/app/base.component';
 
 @Component({
   selector: 'cmp-four',
   template: `
-    <a class="on-push" (click)="(null)">Cmp4</a>
+    <a class="on-push" [class.checked]="n" (click)="(null)">Cmp4</a>
     <ul>
       <li>
         <cmp-eight></cmp-eight>
@@ -22,14 +23,17 @@ import { ToggleService } from 'src/app/toggle.service';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComponentFour implements AfterViewChecked {
+export class ComponentFour extends BaseComponent implements OnInit {
+  @Input() data: { name: string };
+  
   constructor(
-    private zone: NgZone,
+    zone: NgZone,
     private el: ElementRef,
-    private toggleService: ToggleService
-  ) {}
+  ) {
+    super(zone)
+  }
 
-  ngAfterViewChecked() {
-    this.toggleService.onchange(this.el, this.zone);
+  ngOnInit() {
+    this.a = this.el.nativeElement.querySelector('a');
   }
 }
